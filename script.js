@@ -1,10 +1,10 @@
 const contenidos = {
-    "2026-02-04": {
+    "2026-02-06": {
         t: "¡Aceptaste! ❤️",
         m: "Sabía que mi ratita de queso favorita no diría que no. Si estás viendo esto, oficialmente eres mi San Valentín. Prepárate, porque cada día hasta el 14 habrá algo nuevo aquí.",
         img: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZ3bmZ3bmZ3bmZ3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/l41lTfuxV6pT02xJS/giphy.gif"
     },
-    "2026-02-07": {
+    "2026-02-04": {
         t: "Donde todo empezó 💻",
         m: "Recordando cuando solo éramos dos estudiantes de ingeniería tratando de sobrevivir a los laboratorios. Quién diría que terminaríamos siendo el mejor equipo.",
         img: "fotos/foto1.jpeg"
