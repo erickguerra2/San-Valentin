@@ -1,79 +1,113 @@
+/**
+ * Script para el San Valentín de Anggie ❤️
+ * Desarrollado por: Erick Antonio Guerra Illescas
+ */
+
 const contenidos = {
     "06": {
         t: "¡Aceptaste! ❤️",
         m: "Sabía que mi ratita de queso favorita no diría que no. Si estás viendo esto, oficialmente eres mi San Valentín. Prepárate, porque cada día habrá algo nuevo aquí.",
-        img: "https://media.giphy.com/media/l41lTfuxV6pT02xJS/giphy.gif"
+        img: "fotos/dia6.png" // Asegúrate de que este archivo sea .png en tu carpeta
     },
     "07": {
         t: "Donde todo empezó 💻",
-        m: "Recordando cuando solo éramos dos estudiantes de ingeniería tratando de sobrevivir a los laboratorios. Quién diría que terminaríamos siendo el mejor equipo.",
+        m: "Pues no es exactamente donde todo empezó JAJA, pero es una de nuestras primeras fotos juntos así que la vamos a usar como símbolo para este día. Además hasta la foto dice que eres 'you' y sí que eres tú, estoy seguro de eso.",
         img: "fotos/dia7.jpg"
     },
     "08": {
         t: "Un momento random 🧀",
-        m: "Me encanta cada risa y cada momento espontáneo contigo. Gracias por ser tan tú.",
+        m: "Amo pasar esos momentos tan espontáneos en los que nos vemos al terminar las clases y hablamos cositas lindas y nos podemos dar abracitos y besitos. Amo que nuestra relación sea tan espontánea, divertida y que seas tú con la que me sienta feliz.",
         img: "fotos/dia8.jpg"
     },
     "09": {
         t: "Nuestra canción 🎶",
-        m: "Cada vez que escucho esto, no puedo evitar pensar en ti. Eres la melodía de mi código favorito.",
-        img: "fotos/dia9.jpg"
+        m: "Cada vez que escucho esto, no puedo evitar pensar en ti. Eres la melodía de mi vida.",
+        img: "fotos/dia9.jpg",
+        // RECUERDA REEMPLAZAR ESTOS LINKS POR LOS REALES DE TU PLAYLIST
+        music: "https://open.spotify.com/embed/playlist/TU_ID_AQUI", 
+        playlistLink: "https://open.spotify.com/playlist/TU_ID_AQUI"
     },
     "10": {
         t: "Admiración pura ✨",
-        m: "No solo eres hermosa, eres la ingeniera más inteligente que conozco. Me encanta verte brillar en lo que haces.",
+        m: "No solo eres hermosa, eres la mujer más inteligente que conozco. Me encanta verte brillar en lo que haces. Eres excepcional, jamás dejes de luchar por tus convicciones y por tus sueños y sabes que siempre me tendrás para apoyarte. Soy tu fan #1 amorcito.",
         img: "fotos/dia10.jpg"
     },
     "11": {
-        t: "Aventureros UVG 🌲",
-        m: "De las aulas a cualquier lugar del mundo, siempre quiero que estés a mi lado.",
+        t: "Aventureros 🌲",
+        m: "Por más viajes a cualquier lado, ya llevamos uno a Xela JAJA. Amo pasar tiempo contigo, sin duda alguna el mejor viaje de mi vida: ir contigo en el carro abrazaditos, dormidos, agarrados de la mano, molestándote... amo eso de verdad y quiero que en un futuro sean muchos viajes así. TE AMO.",
         img: "fotos/dia11.jpg"
     },
     "12": {
         t: "Casi, casi... ⏳",
-        m: "Solo faltan dos días para celebrar lo mucho que te amo. Gracias por hacer que cada día sea especial.",
+        m: "Solo faltan dos días para celebrar lo mucho que te amo. Gracias por hacer que cada día sea especial. Este día solo es una excusa para demostrarte amor, pero te amo cada día de mi vida y te seguiré amando el resto de mis días. Gracias por estar a mi lado siempre, eres la razón por la que soy más feliz, me haces ser una mejor persona e inspiras a ser mejor cada día. TE AMO MI RATITA DE QUESO.",
         img: "fotos/dia12.jpg"
     },
     "13": {
         t: "Víspera de Amor ❤️",
-        m: "Mañana es el gran día, pero recuerda que te amo los 365 días del año (y los bisiestos también).",
+        m: "Mañana es el gran día, pero recuerda que te amo los 365 días del año (y los bisiestos también). Espero te guste lo que tengo preparado (al momento de hacer esto aún no está todo muy claro JAJA). Te amo mi princesa hermosa.",
         img: "fotos/dia13.jpg"
     },
     "14": {
-        t: "Feliz San Valentín, Anggie ❤️",
-        m: "Eres el amor de mi vida, mi compañera de proyectos y mi ratita de queso para siempre. ¡Gracias por decir que sí!",
-        img: "fotos/final.jpg"
+        t: "Feliz San Valentín, Amorcito ❤️",
+        m: "Eres el amor de mi vida, mi compañera de aventuras y mi ratita de queso para siempre. ¡Gracias por decir que sí!",
+        img: "fotos/final.jpg" // Aquí subes tu collage hecho en Canva
     }
 };
 
 function cargarPagina() {
     const params = new URLSearchParams(window.location.search);
-    let dia = params.get('dia'); // Captura "07", "08", etc.
+    let dia = params.get('dia'); // Permite probar con ?dia=07, ?dia=14, etc.
 
-    // Si no hay parámetro en la URL, sacamos el día real del sistema
+    // Si no hay parámetro, usa el día real del sistema
     if (!dia) {
         const hoy = new Date();
-        // Solo extraemos el día (ej: "04", "06", "14")
+        // Nota: Esto funcionará correctamente durante el mes de febrero
         dia = String(hoy.getDate()).padStart(2, '0');
     }
 
-    // Buscamos en el objeto usando solo el número del día
-    // Si el día no está en el objeto (ej. hoy es 04), mostramos el día 06 por defecto
+    // Busca el contenido. Si el día no existe (ej. hoy es 4), muestra el día 6 por defecto.
     const data = contenidos[dia] || contenidos["06"];
 
-    // Actualizamos el HTML
+    // 1. Actualizar Textos
     document.getElementById('titulo').innerText = data.t;
     document.getElementById('mensaje').innerText = data.m;
     
+    // 2. Actualizar Imagen
     const container = document.getElementById('media-container');
     if (data.img) {
-        container.innerHTML = `<img src="${data.img}" class="animate__animated animate__zoomIn img-fluid">`;
+        container.innerHTML = `<img src="${data.img}" class="animate__animated animate__zoomIn rounded-3xl shadow-lg border-4 border-white w-full h-auto object-cover aspect-square">`;
     } else {
         container.innerHTML = "";
     }
     
-    console.log("Mostrando contenido para el día:", dia);
+    // 3. Actualizar Spotify
+    const musicContainer = document.getElementById('spotify-container');
+    if (data.music) {
+        let htmlExtra = `
+            <iframe style="border-radius:12px" 
+                src="${data.music}" 
+                width="100%" height="152" 
+                frameBorder="0" allowfullscreen="" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy">
+            </iframe>`;
+
+        if (data.playlistLink) {
+            htmlExtra += `
+                <div class="mt-4">
+                    <a href="${data.playlistLink}" target="_blank" class="btn btn-primary btn-outline w-full rounded-full gap-2 animate__animated animate__fadeIn">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify" class="w-6 h-6">
+                        Escuchar playlist completa
+                    </a>
+                </div>`;
+        }
+        musicContainer.innerHTML = htmlExtra;
+    } else {
+        musicContainer.innerHTML = "";
+    }
+
+    console.log("Carga completa para el día:", dia);
 }
 
-// Ejecutar al cargar la ventana
+// Inicializar la página al cargar
 window.onload = cargarPagina;
