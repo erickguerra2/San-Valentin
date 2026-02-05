@@ -24,8 +24,8 @@ const contenidos = {
         m: "Cada vez que escucho esto, no puedo evitar pensar en ti. Eres la melodía de mi vida.",
         img: "fotos/dia9.jpeg",
         // RECUERDA REEMPLAZAR ESTOS LINKS POR LOS REALES DE TU PLAYLIST
-        music: "https://open.spotify.com/embed/track/6UelLqGlWMvDrocSeS7pkE3", // El src que encontraste
-        playlistLink: "https://open.spotify.com/embed/track/6UelLqGlWMvDrocSeS7pkE4"
+        music: "https://open.spotify.com/embed/playlist/2k6ZLYnZLahKGWVr0hv2k1?utm_source=generator&theme=0", // El src que encontraste
+        playlistLink: "https://open.spotify.com/playlist/2k6ZLYnZLahKGWVr0hv2k1?si=d2374da569a549c3"
     },
     "10": {
         t: "Admiración pura ✨",
