@@ -56,23 +56,37 @@ const contenidos = {
 
 function cargarPagina() {
     const params = new URLSearchParams(window.location.search);
-    let dia = params.get('dia'); // Permite probar con ?dia=07, ?dia=14, etc.
+    let dia = params.get('dia'); 
 
-    // Si no hay parámetro, usa el día real del sistema
+    // Si no hay parámetro, usamos el día real del sistema
     if (!dia) {
         const hoy = new Date();
-        // Nota: Esto funcionará correctamente durante el mes de febrero
         dia = String(hoy.getDate()).padStart(2, '0');
     }
 
-    // Busca el contenido. Si el día no existe (ej. hoy es 4), muestra el día 6 por defecto.
+    // Buscamos la data del día; si no existe, mostramos el día 06 por defecto
     const data = contenidos[dia] || contenidos["06"];
 
-    // 1. Actualizar Textos
+    // --- LÓGICA DE FONDO (BEIGE Y COLLAGE) ---
+    const body = document.body;
+    
+    if (dia === "14") {
+        // Estilo para el día final: Imagen de fondo + overlay suave
+        body.style.backgroundImage = `linear-gradient(rgba(245, 245, 220, 0.75), rgba(245, 245, 220, 0.75)), url('${data.img}')`;
+        body.style.backgroundSize = "cover";
+        body.style.backgroundPosition = "center";
+        body.style.backgroundAttachment = "fixed";
+    } else {
+        // Estilo beige aesthetic para el resto de los días
+        body.style.backgroundImage = "none";
+        body.style.backgroundColor = "#F5F5DC"; 
+    }
+
+    // --- ACTUALIZACIÓN DE CONTENIDO ---
     document.getElementById('titulo').innerText = data.t;
     document.getElementById('mensaje').innerText = data.m;
     
-    // 2. Actualizar Imagen
+    // Imagen principal en la tarjeta
     const container = document.getElementById('media-container');
     if (data.img) {
         container.innerHTML = `<img src="${data.img}" class="animate__animated animate__zoomIn rounded-3xl shadow-lg border-4 border-white w-full h-auto object-cover aspect-square">`;
@@ -80,7 +94,7 @@ function cargarPagina() {
         container.innerHTML = "";
     }
     
-    // 3. Actualizar Spotify
+    // Reproductor y botón de Spotify
     const musicContainer = document.getElementById('spotify-container');
     if (data.music) {
         let htmlExtra = `
@@ -105,8 +119,8 @@ function cargarPagina() {
     } else {
         musicContainer.innerHTML = "";
     }
-
-    console.log("Carga completa para el día:", dia);
+    
+    console.log("Mostrando contenido para el día:", dia);
 }
 
 // Inicializar la página al cargar
